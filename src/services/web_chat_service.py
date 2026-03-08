@@ -26,40 +26,40 @@ CONFIDENCE_THRESHOLD = 0.50
 
 MESSAGES = {
     "welcome": {
-        "hi-IN": "🙏 नमस्ते! KaamConnect में आपका स्वागत है।\n\nहम आपको नौकरी ढूंढने या कामगार ढूंढने में मदद करते हैं।\n\nकृपया बताएं - आप कामगार हैं या नियोक्ता?",
-        "en-IN": "🙏 Welcome to KaamConnect!\n\nWe help you find jobs or hire workers.\n\nAre you a Worker or Employer?",
+        "hi-IN": "नमस्ते! KaamConnect में आपका स्वागत है।\n\nहम आपको नौकरी ढूंढने या कामगार ढूंढने में मदद करते हैं।\n\nकृपया बताएं - आप कामगार हैं या नियोक्ता?",
+        "en-IN": "Welcome to KaamConnect!\n\nWe help you find jobs or hire workers.\n\nAre you a Worker or Employer?",
     },
     "ask_user_type": {
-        "hi-IN": "आप कामगार हैं या नियोक्ता?\n\n1️⃣ कामगार (काम ढूंढ रहे हैं)\n2️⃣ नियोक्ता (कामगार ढूंढ रहे हैं)",
-        "en-IN": "Are you a worker or employer?\n\n1️⃣ Worker (looking for work)\n2️⃣ Employer (looking to hire)",
+        "hi-IN": "आप कामगार हैं या नियोक्ता?\n\n1. कामगार (काम ढूंढ रहे हैं)\n2. नियोक्ता (कामगार ढूंढ रहे हैं)",
+        "en-IN": "Are you a worker or employer?\n\n1. Worker (looking for work)\n2. Employer (looking to hire)",
     },
     "ask_job_details_worker": {
-        "hi-IN": "बढ़िया! आप कौनसा काम करते हैं और कहाँ काम चाहिए?\n\n🎤 Voice message भेज सकते हैं या type कर सकते हैं।\n\nउदाहरण: \"मैं plumber हूँ, Koramangala में काम चाहिए, 600 रुपये daily\"",
-        "en-IN": "Great! What work do you do and where do you need a job?\n\n🎤 You can send a voice message or type.\n\nExample: \"I'm a plumber, need work in Koramangala, 600 rupees daily\"",
+        "hi-IN": "बढ़िया! आप कौनसा काम करते हैं और कहाँ काम चाहिए?\n\nVoice message भेज सकते हैं या type कर सकते हैं।",
+        "en-IN": "Great! What work do you do and where do you need a job?\n\nYou can send a voice message or type.",
     },
     "ask_job_details_employer": {
-        "hi-IN": "बढ़िया! आपको कौनसा कामगार चाहिए?\n\n🎤 Voice message भेजें या type करें।\n\nउदाहरण: \"मुझे Indiranagar में एक maid चाहिए, 8000 रुपये monthly\"",
-        "en-IN": "Great! What kind of worker do you need?\n\n🎤 Send a voice message or type.\n\nExample: \"I need a maid in Indiranagar, 8000 rupees monthly\"",
+        "hi-IN": "बढ़िया! आपको कौनसा कामगार चाहिए?\n\nVoice message भेजें या type करें।",
+        "en-IN": "Great! What kind of worker do you need?\n\nSend a voice message or type.",
     },
     "low_confidence": {
-        "hi-IN": "माफ़ करें, आपका message ठीक से समझ नहीं आया। कृपया दोबारा भेजें। 🎤",
-        "en-IN": "Sorry, couldn't understand clearly. Please try again. 🎤",
+        "hi-IN": "माफ़ करें, आपका message ठीक से समझ नहीं आया। कृपया दोबारा भेजें।",
+        "en-IN": "Sorry, couldn't understand clearly. Please try again.",
     },
     "no_matches": {
-        "hi-IN": "अभी आपकी ज़रूरतों के अनुसार कोई काम उपलब्ध नहीं है। 🔔",
-        "en-IN": "No matching jobs found right now. 🔔",
+        "hi-IN": "अभी आपकी ज़रूरतों के अनुसार कोई काम उपलब्ध नहीं है।",
+        "en-IN": "No matching jobs found right now.",
     },
     "posting_created": {
-        "hi-IN": "✅ आपकी job posting बन गई है! Job ID: {job_id}",
-        "en-IN": "✅ Your job posting has been created! Job ID: {job_id}",
+        "hi-IN": "आपकी job posting बन गई है! Job ID: {job_id}",
+        "en-IN": "Your job posting has been created! Job ID: {job_id}",
     },
     "error": {
-        "hi-IN": "कुछ गड़बड़ हो गई। कृपया दोबारा कोशिश करें। 🙏",
-        "en-IN": "Something went wrong. Please try again. 🙏",
+        "hi-IN": "कुछ गड़बड़ हो गई। कृपया दोबारा कोशिश करें।",
+        "en-IN": "Something went wrong. Please try again.",
     },
     "please_wait": {
-        "hi-IN": "कृपया रुकें, हम आपके लिए काम ढूंढ रहे हैं... ⏳",
-        "en-IN": "Please wait, finding jobs for you... ⏳",
+        "hi-IN": "कृपया रुकें, हम आपके लिए काम ढूंढ रहे हैं...",
+        "en-IN": "Please wait, finding jobs for you...",
     },
 }
 
@@ -149,8 +149,8 @@ class WebChatService:
             session,
             "welcome",
             buttons=[
-                {"id": "worker", "label": "🔧 Worker / कामगार"},
-                {"id": "employer", "label": "🏢 Employer / नियोक्ता"},
+                {"id": "worker", "label": "Worker / कामगार"},
+                {"id": "employer", "label": "Employer / नियोक्ता"},
             ],
         )
 
@@ -176,8 +176,8 @@ class WebChatService:
                 session,
                 "ask_user_type",
                 buttons=[
-                    {"id": "worker", "label": "🔧 Worker / कामगार"},
-                    {"id": "employer", "label": "🏢 Employer / नियोक्ता"},
+                    {"id": "worker", "label": "Worker / कामगार"},
+                    {"id": "employer", "label": "Employer / नियोक्ता"},
                 ],
             )
 
@@ -279,9 +279,9 @@ class WebChatService:
 
         lang = session.language or "hi-IN"
         header = (
-            "🎯 आपके लिए मिलान:"
+            "आपके लिए मिलान:"
             if lang.startswith("hi")
-            else "🎯 Matches for you:"
+            else "Matches for you:"
         )
         lines = [header, ""]
         buttons = []
@@ -395,9 +395,9 @@ class WebChatService:
 
             lang = session.language or "hi-IN"
             if lang.startswith("hi"):
-                msg = f"🎉 बधाई हो! आपने {job_type} - {area} चुना।\n\n📞 नियोक्ता का नंबर: {employer_phone}\n\nसीधे बात करें! KaamConnect आपकी सेवा में! 🙏"
+                msg = f"बधाई हो! आपने {job_type} - {area} चुना।\n\nनियोक्ता का नंबर: {employer_phone}\n\nसीधे बात करें!"
             else:
-                msg = f"🎉 Great choice! You selected {job_type} - {area}.\n\n📞 Employer contact: {employer_phone}\n\nCall them directly! KaamConnect at your service! 🙏"
+                msg = f"Great choice! You selected {job_type} - {area}.\n\nEmployer contact: {employer_phone}\n\nCall them directly!"
 
             return self._make_response(session, None, custom_text=msg)
         else:

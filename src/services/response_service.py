@@ -19,43 +19,43 @@ TEMPLATES_DIR = Path(__file__).parent.parent.parent / "templates"
 # Multilingual static messages
 MESSAGES = {
     "welcome": {
-        "hi-IN": "🙏 नमस्ते! KaamConnect में आपका स्वागत है।\n\nहम आपको नौकरी ढूंढने या कामगार ढूंढने में मदद करते हैं।\n\nकृपया बताएं - आप कौन हैं?",
-        "en-IN": "🙏 Welcome to KaamConnect!\n\nWe help you find jobs or hire workers.\n\nPlease tell us - who are you?",
-        "ta-IN": "🙏 KaamConnect-க்கு வரவேற்கிறோம்!\n\nவேலை கண்டுபிடிக்க அல்லது தொழிலாளர்களை பணியமர்த்த நாங்கள் உதவுகிறோம்.",
-        "te-IN": "🙏 KaamConnect కి స్వాగతం!\n\nమీకు ఉద్యోగం కనుగొనడంలో లేదా కార్మికులను నియమించడంలో సహాయం చేస్తాము.",
-        "bn-IN": "🙏 KaamConnect-এ স্বাগতম!\n\nআমরা আপনাকে চাকরি খুঁজতে বা কর্মী নিয়োগে সাহায্য করি.",
+        "hi-IN": "नमस्ते! KaamConnect में आपका स्वागत है।\n\nहम आपको नौकरी ढूंढने या कामगार ढूंढने में मदद करते हैं।\n\nकृपया बताएं - आप कौन हैं?",
+        "en-IN": "Welcome to KaamConnect!\n\nWe help you find jobs or hire workers.\n\nPlease tell us - who are you?",
+        "ta-IN": "KaamConnect-க்கு வரவேற்கிறோம்!\n\nவேலை கண்டுபிடிக்க அல்லது தொழிலாளர்களை பணியமர்த்த நாங்கள் உதவுகிறோம்.",
+        "te-IN": "KaamConnect కి స్వాగతం!\n\nమీకు ఉద్యోగం కనుగొనడంలో లేదా కార్మికులను నియమించడంలో సహాయం చేస్తాము.",
+        "bn-IN": "KaamConnect-এ স্বাগতম!\n\nআমরা আপনাকে চাকরি খুঁজতে বা কর্মী নিয়োগে সাহায্য করি.",
     },
     "ask_user_type": {
-        "hi-IN": "आप कामगार हैं या नियोक्ता?\n\n1️⃣ कामगार (काम ढूंढ रहे हैं)\n2️⃣ नियोक्ता (कामगार ढूंढ रहे हैं)",
-        "en-IN": "Are you a worker or employer?\n\n1️⃣ Worker (looking for work)\n2️⃣ Employer (looking to hire)",
+        "hi-IN": "आप कामगार हैं या नियोक्ता?\n\n1. कामगार (काम ढूंढ रहे हैं)\n2. नियोक्ता (कामगार ढूंढ रहे हैं)",
+        "en-IN": "Are you a worker or employer?\n\n1. Worker (looking for work)\n2. Employer (looking to hire)",
     },
     "ask_job_details_worker": {
-        "hi-IN": "बढ़िया! आप कौनसा काम करते हैं और कहाँ काम चाहिए?\n\n🎤 आप voice message भेज सकते हैं या type कर सकते हैं।\n\nउदाहरण: \"मैं plumber हूँ, Koramangala में काम चाहिए, 600 रुपये daily\"",
-        "en-IN": "Great! What work do you do and where do you need a job?\n\n🎤 You can send a voice message or type.\n\nExample: \"I'm a plumber, need work in Koramangala, 600 rupees daily\"",
+        "hi-IN": "बढ़िया! आप कौनसा काम करते हैं और कहाँ काम चाहिए?\n\nVoice message भेज सकते हैं या type कर सकते हैं।",
+        "en-IN": "Great! What work do you do and where do you need a job?\n\nYou can send a voice message or type.",
     },
     "ask_job_details_employer": {
-        "hi-IN": "बढ़िया! आपको कौनसा कामगार चाहिए?\n\n🎤 Voice message भेजें या type करें।\n\nउदाहरण: \"मुझे Indiranagar में एक maid चाहिए, 8000 रुपये monthly\"",
-        "en-IN": "Great! What kind of worker do you need?\n\n🎤 Send a voice message or type.\n\nExample: \"I need a maid in Indiranagar, 8000 rupees monthly\"",
+        "hi-IN": "बढ़िया! आपको कौनसा कामगार चाहिए?\n\nVoice message भेजें या type करें।",
+        "en-IN": "Great! What kind of worker do you need?\n\nSend a voice message or type.",
     },
     "low_confidence": {
-        "hi-IN": "माफ़ करें, आपका message ठीक से समझ नहीं आया। कृपया दोबारा भेजें - शांत जगह से बोलें। 🎤",
-        "en-IN": "Sorry, we couldn't understand your message clearly. Please try again - speak from a quiet place. 🎤",
+        "hi-IN": "माफ़ करें, आपका message ठीक से समझ नहीं आया। कृपया दोबारा भेजें - शांत जगह से बोलें।",
+        "en-IN": "Sorry, we couldn't understand your message clearly. Please try again - speak from a quiet place.",
     },
     "no_matches": {
-        "hi-IN": "अभी आपकी ज़रूरतों के अनुसार कोई काम उपलब्ध नहीं है। जैसे ही कोई नया काम आएगा, हम आपको बताएंगे! 🔔",
-        "en-IN": "No matching jobs found right now. We'll notify you when something comes up! 🔔",
+        "hi-IN": "अभी आपकी ज़रूरतों के अनुसार कोई काम उपलब्ध नहीं है। जैसे ही कोई नया काम आएगा, हम आपको बताएंगे!",
+        "en-IN": "No matching jobs found right now. We'll notify you when something comes up!",
     },
     "posting_created": {
-        "hi-IN": "✅ आपकी job posting बन गई है!\n\nJob ID: {job_id}\n\nजैसे ही कोई कामगार मिलेगा, हम आपसे संपर्क करेंगे।",
-        "en-IN": "✅ Your job posting has been created!\n\nJob ID: {job_id}\n\nWe'll contact you when a worker matches.",
+        "hi-IN": "आपकी job posting बन गई है!\n\nJob ID: {job_id}\n\nजैसे ही कोई कामगार मिलेगा, हम आपसे संपर्क करेंगे।",
+        "en-IN": "Your job posting has been created!\n\nJob ID: {job_id}\n\nWe'll contact you when a worker matches.",
     },
     "contact_shared": {
-        "hi-IN": "🎉 बधाई हो! मैच मिल गया!\n\n📞 संपर्क नंबर: {contact_number}\n\nसीधे बात करें और काम तय करें। KaamConnect आपकी सेवा में! 🙏",
-        "en-IN": "🎉 Congratulations! Match found!\n\n📞 Contact number: {contact_number}\n\nCall directly to discuss the job. KaamConnect at your service! 🙏",
+        "hi-IN": "बधाई हो! मैच मिल गया!\n\nसंपर्क नंबर: {contact_number}\n\nसीधे बात करें और काम तय करें।",
+        "en-IN": "Congratulations! Match found!\n\nContact number: {contact_number}\n\nCall directly to discuss the job.",
     },
     "error": {
-        "hi-IN": "कुछ गड़बड़ हो गई। कृपया थोड़ी देर बाद फिर कोशिश करें। 🙏",
-        "en-IN": "Something went wrong. Please try again in a moment. 🙏",
+        "hi-IN": "कुछ गड़बड़ हो गई। कृपया थोड़ी देर बाद फिर कोशिश करें।",
+        "en-IN": "Something went wrong. Please try again in a moment.",
     },
 }
 
@@ -113,8 +113,8 @@ class ResponseService:
             "body": {"text": self._get_message("ask_user_type", language)},
             "action": {
                 "buttons": [
-                    {"type": "reply", "reply": {"id": "worker", "title": "🔧 Worker / कामगार"}},
-                    {"type": "reply", "reply": {"id": "employer", "title": "🏢 Employer / नियोक्ता"}},
+                    {"type": "reply", "reply": {"id": "worker", "title": "Worker / कामगार"}},
+                    {"type": "reply", "reply": {"id": "employer", "title": "Employer / नियोक्ता"}},
                 ]
             },
         })
@@ -131,9 +131,9 @@ class ResponseService:
     def _send_please_wait(self, phone_number: str, language: str, data: dict) -> None:
         """Ask user to wait while processing."""
         if language.startswith("hi"):
-            text = "कृपया रुकें, हम आपके लिए काम ढूंढ रहे हैं... ⏳"
+            text = "कृपया रुकें, हम आपके लिए काम ढूंढ रहे हैं..."
         else:
-            text = "Please wait, we're finding jobs for you... ⏳"
+            text = "Please wait, we're finding jobs for you..."
         self._eums.send_text_message(phone_number, text)
 
     def _send_user_type_question(self, phone_number: str, language: str, data: dict) -> None:
@@ -142,8 +142,8 @@ class ResponseService:
             "body": {"text": self._get_message("ask_user_type", language)},
             "action": {
                 "buttons": [
-                    {"type": "reply", "reply": {"id": "worker", "title": "🔧 Worker / कामगार"}},
-                    {"type": "reply", "reply": {"id": "employer", "title": "🏢 Employer / नियोक्ता"}},
+                    {"type": "reply", "reply": {"id": "worker", "title": "Worker / कामगार"}},
+                    {"type": "reply", "reply": {"id": "employer", "title": "Employer / नियोक्ता"}},
                 ]
             },
         })
@@ -203,7 +203,7 @@ class ResponseService:
 
         # Send text summary
         text = "\n".join(summaries)
-        header = "🎯 आपके लिए मिलान:" if language.startswith("hi") else "🎯 Matches for you:"
+        header = "आपके लिए मिलान:" if language.startswith("hi") else "Matches for you:"
         self._eums.send_text_message(phone_number, f"{header}\n\n{text}")
 
         # Send interactive list for selection
@@ -251,8 +251,8 @@ class ResponseService:
             "body": {"text": text},
             "action": {
                 "buttons": [
-                    {"type": "reply", "reply": {"id": "confirm_exchange", "title": "✅ Yes / हाँ"}},
-                    {"type": "reply", "reply": {"id": "reject_exchange", "title": "❌ No / नहीं"}},
+                    {"type": "reply", "reply": {"id": "confirm_exchange", "title": "Yes / हाँ"}},
+                    {"type": "reply", "reply": {"id": "reject_exchange", "title": "No / नहीं"}},
                 ]
             },
         })

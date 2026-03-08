@@ -77,9 +77,9 @@ class ContactExchangeService:
 
         # Tell worker we're waiting for employer confirmation
         if (worker_session.language or "").startswith("hi"):
-            text = "आपकी request employer को भेज दी गई है। जल्दी ही जवाब आएगा! ⏳"
+            text = "आपकी request employer को भेज दी गई है। जल्दी ही जवाब आएगा!"
         else:
-            text = "Your request has been sent to the employer. You'll hear back soon! ⏳"
+            text = "Your request has been sent to the employer. You'll hear back soon!"
 
         from common.clients.eums_client import EUMSClient
 
@@ -175,9 +175,9 @@ class ContactExchangeService:
             worker_session = self._session_service.get_or_create_session(worker_phone)
             lang = worker_session.language or "hi-IN"
             if lang.startswith("hi"):
-                text = "Employer ने अभी interest नहीं दिखाया। अन्य jobs देखने के लिए फिर से बात करें। 🙏"
+                text = "Employer ने अभी interest नहीं दिखाया। अन्य jobs देखने के लिए फिर से बात करें।"
             else:
-                text = "The employer is not interested at this time. Talk to us again to see other jobs. 🙏"
+                text = "The employer is not interested at this time. Talk to us again to see other jobs."
 
             from common.clients.eums_client import EUMSClient
 
