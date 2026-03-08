@@ -9,6 +9,7 @@ from common import config
 class ConversationState(StrEnum):
     NEW = "new"
     AWAITING_USER_TYPE = "awaiting_user_type"
+    AWAITING_PHONE_NUMBER = "awaiting_phone_number"
     AWAITING_LANGUAGE = "awaiting_language"
     COLLECTING_JOB_INFO = "collecting_job_info"
     AWAITING_CONFIRMATION = "awaiting_confirmation"

@@ -6,6 +6,7 @@ Returns response dicts instead of sending via EUMS/WhatsApp.
 """
 
 import base64
+import re
 from decimal import Decimal
 from typing import Optional
 from uuid import uuid4
@@ -60,6 +61,14 @@ MESSAGES = {
     "please_wait": {
         "hi-IN": "कृपया रुकें, हम आपके लिए काम ढूंढ रहे हैं...",
         "en-IN": "Please wait, finding jobs for you...",
+    },
+    "ask_phone": {
+        "hi-IN": "कृपया अपना phone number भेजें (जैसे 9876543210)",
+        "en-IN": "Please share your phone number (e.g. 9876543210)",
+    },
+    "invalid_phone": {
+        "hi-IN": "यह सही phone number नहीं है। कृपया 10 अंकों का number भेजें (जैसे 9876543210)",
+        "en-IN": "That doesn't look like a valid phone number. Please enter a 10-digit number (e.g. 9876543210)",
     },
 }
 
@@ -122,6 +131,8 @@ class WebChatService:
                 return self._handle_new_user(session)
             elif state == ConversationState.AWAITING_USER_TYPE:
                 return self._handle_user_type(session, text)
+            elif state == ConversationState.AWAITING_PHONE_NUMBER:
+                return self._handle_phone_number(session, text)
             elif state in (
                 ConversationState.COLLECTING_JOB_INFO,
                 ConversationState.AWAITING_CONFIRMATION,
@@ -167,10 +178,9 @@ class WebChatService:
             self._session_service.set_user_type(session, user_type)
             session.user_type = user_type
             self._session_service.advance_state(
-                session, ConversationState.COLLECTING_JOB_INFO
+                session, ConversationState.AWAITING_PHONE_NUMBER
             )
-            key = f"ask_job_details_{user_type}"
-            return self._make_response(session, key)
+            return self._make_response(session, "ask_phone")
         else:
             return self._make_response(
                 session,
@@ -180,6 +190,26 @@ class WebChatService:
                     {"id": "employer", "label": "Employer / नियोक्ता"},
                 ],
             )
+
+    def _handle_phone_number(self, session: Session, text: Optional[str]) -> dict:
+        """Validate and store the user's phone number."""
+        if text:
+            # Strip common prefixes and whitespace
+            cleaned = text.strip().replace(" ", "").replace("-", "")
+            cleaned = re.sub(r"^(\+91|91|0)", "", cleaned)
+
+            if re.fullmatch(r"[6-9]\d{9}", cleaned):
+                phone = f"+91{cleaned}"
+                self._session_service.advance_state(
+                    session,
+                    ConversationState.COLLECTING_JOB_INFO,
+                    {"contact_phone": phone},
+                )
+                key = f"ask_job_details_{session.user_type or 'worker'}"
+                return self._make_response(session, key)
+
+        # Invalid or missing — re-prompt
+        return self._make_response(session, "invalid_phone")
 
     def _handle_job_info(
         self,
@@ -340,7 +370,7 @@ class WebChatService:
         data = session.extracted_data
         posting = JobPosting(
             job_id=JobPosting.generate_id(),
-            employer_phone=session.phone_number,
+            employer_phone=data.get("contact_phone") or session.phone_number,
             job_type=data.get("job_type", ""),
             location=Location.from_dict(data.get("location", {})),
             salary=SalaryRange.from_dict(data.get("salary", {})),
