@@ -33,7 +33,7 @@ EUMS_REGION = os.environ.get("EUMS_REGION", "us-east-1")
 SESSION_TTL_HOURS = int(os.environ.get("SESSION_TTL_HOURS", "24"))
 
 # Matching config
-MATCH_THRESHOLD = float(os.environ.get("MATCH_THRESHOLD", "0.70"))
+MATCH_THRESHOLD = float(os.environ.get("MATCH_THRESHOLD", "0.40"))
 MAX_MATCHES_RETURNED = int(os.environ.get("MAX_MATCHES_RETURNED", "3"))
 
 # Rate limiting
