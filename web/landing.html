@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KaamConnect — Voice-First Job Matching for India</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --saffron: #E8772A;
+  --saffron-light: #F5A623;
+  --teal: #075E54;
+  --teal-deep: #064E46;
+  --teal-light: #0A7A6D;
+  --cream: #FFF8F0;
+  --cream-dark: #F5EDE3;
+  --terracotta: #C2563A;
+  --charcoal: #1A1A1A;
+  --warm-gray: #6B5E54;
+  --sand: #D4C5B2;
+  --white: #FFFFFF;
+  --green-whatsapp: #25D366;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--cream);
+  color: var(--charcoal);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* --- Icon system --- */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* --- Navigation --- */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.nav.scrolled {
+  background: rgba(255, 248, 240, 0.95);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--teal);
+}
+
+.nav-logo {
+  width: 36px; height: 36px;
+  background: var(--saffron);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  transform: rotate(-3deg);
+}
+
+.nav-brand span {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  letter-spacing: -0.5px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--warm-gray);
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--teal); }
+
+.nav-cta {
+  background: var(--saffron) !important;
+  color: var(--white) !important;
+  padding: 10px 24px !important;
+  border-radius: 100px;
+  font-weight: 600 !important;
+  transition: transform 0.2s, box-shadow 0.2s !important;
+}
+
+.nav-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(232, 119, 42, 0.35);
+}
+
+/* --- Hero --- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 32px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-pattern {
+  position: absolute;
+  top: 0; right: -100px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(232, 119, 42, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-bg-dots {
+  position: absolute;
+  bottom: 60px; left: 40px;
+  width: 120px; height: 120px;
+  background-image: radial-gradient(circle, var(--sand) 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+  opacity: 0.6;
+}
+
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-text { max-width: 560px; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(7, 94, 84, 0.08);
+  color: var(--teal);
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  letter-spacing: 0.5px;
+}
+
+.hero-badge-dot {
+  width: 8px; height: 8px;
+  background: var(--green-whatsapp);
+  border-radius: 50%;
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(40px, 5.5vw, 64px);
+  line-height: 1.08;
+  color: var(--charcoal);
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+}
+
+.hero h1 .hindi {
+  font-family: 'Noto Sans Devanagari', 'DM Serif Display', serif;
+  color: var(--saffron);
+  font-style: italic;
+}
+
+.hero-sub {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--warm-gray);
+  margin: 20px 0 36px;
+  max-width: 480px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--saffron);
+  color: white;
+  padding: 16px 36px;
+  border-radius: 100px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(232, 119, 42, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(232, 119, 42, 0.4);
+  background: #D66B22;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--teal);
+  padding: 16px 32px;
+  border-radius: 100px;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  border: 2px solid var(--teal);
+  transition: all 0.25s;
+}
+
+.btn-secondary:hover {
+  background: var(--teal);
+  color: white;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--sand);
+}
+
+.stat-item { text-align: left; }
+.stat-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 32px;
+  color: var(--teal);
+}
+.stat-label {
+  font-size: 13px;
+  color: var(--warm-gray);
+  margin-top: 2px;
+}
+
+/* --- Hero phone mockup --- */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.phone-mockup {
+  width: 280px;
+  background: var(--white);
+  border-radius: 32px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.12), 0 0 0 8px var(--charcoal), 0 0 0 10px var(--warm-gray);
+  overflow: hidden;
+  transform: rotate(2deg);
+  position: relative;
+  z-index: 2;
+}
+
+.phone-notch {
+  width: 120px; height: 24px;
+  background: var(--charcoal);
+  border-radius: 0 0 16px 16px;
+  margin: 0 auto;
+}
+
+.phone-header {
+  background: var(--teal);
+  color: white;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.phone-header-dot {
+  width: 32px; height: 32px;
+  background: var(--saffron);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.phone-header-text strong { font-size: 14px; display: block; }
+.phone-header-text span { font-size: 11px; opacity: 0.7; }
+
+.phone-chat {
+  padding: 12px;
+  background: #E5DDD5;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.chat-bubble {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.4;
+  max-width: 85%;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  opacity: 0;
+  animation: bubbleIn 0.4s forwards;
+}
+
+.chat-bubble.bot { background: white; align-self: flex-start; border-top-left-radius: 0; }
+.chat-bubble.user { background: #DCF8C6; align-self: flex-end; border-top-right-radius: 0; }
+
+.chat-bubble:nth-child(1) { animation-delay: 0.5s; }
+.chat-bubble:nth-child(2) { animation-delay: 1.2s; }
+.chat-bubble:nth-child(3) { animation-delay: 1.9s; }
+.chat-bubble:nth-child(4) { animation-delay: 2.6s; }
+.chat-bubble:nth-child(5) { animation-delay: 3.3s; }
+
+@keyframes bubbleIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.float-card {
+  position: absolute;
+  background: white;
+  border-radius: 16px;
+  padding: 16px 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  z-index: 3;
+}
+
+.float-card-voice {
+  top: 40px; left: -40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: floatY 3s ease-in-out infinite;
+}
+
+.float-card-lang {
+  bottom: 60px; right: -30px;
+  animation: floatY 3s ease-in-out infinite 1.5s;
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.voice-wave {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.voice-wave span {
+  width: 3px;
+  background: var(--saffron);
+  border-radius: 2px;
+  animation: waveBar 0.8s ease-in-out infinite;
+}
+
+.voice-wave span:nth-child(1) { height: 12px; animation-delay: 0s; }
+.voice-wave span:nth-child(2) { height: 20px; animation-delay: 0.1s; }
+.voice-wave span:nth-child(3) { height: 16px; animation-delay: 0.2s; }
+.voice-wave span:nth-child(4) { height: 24px; animation-delay: 0.3s; }
+.voice-wave span:nth-child(5) { height: 14px; animation-delay: 0.4s; }
+
+@keyframes waveBar {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.4); }
+}
+
+.lang-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.lang-chip {
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 500;
+  background: var(--cream-dark);
+  color: var(--warm-gray);
+}
+.lang-chip.active { background: var(--teal); color: white; }
+
+/* --- Sections shared --- */
+section { padding: 100px 32px; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+
+.section-label {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--saffron);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.15;
+  color: var(--charcoal);
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.section-desc {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--warm-gray);
+  max-width: 600px;
+}
+
+/* --- Problem --- */
+.problem {
+  background: var(--charcoal);
+  color: var(--cream);
+}
+
+.problem .section-label { color: var(--saffron-light); }
+.problem .section-title { color: var(--cream); }
+.problem .section-desc { color: var(--sand); }
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 56px;
+}
+
+.problem-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 36px 28px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.problem-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--saffron);
+}
+
+.problem-icon {
+  width: 52px; height: 52px;
+  background: rgba(232, 119, 42, 0.15);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: var(--saffron-light);
+}
+
+.problem-icon svg { width: 26px; height: 26px; }
+
+.problem-stat {
+  font-family: 'DM Serif Display', serif;
+  font-size: 36px;
+  color: var(--saffron);
+  margin-bottom: 4px;
+}
+
+.problem-card h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: var(--cream);
+}
+
+.problem-card p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--sand);
+}
+
+/* --- How it works --- */
+.how-it-works { background: var(--cream); }
+
+.pipeline {
+  margin-top: 56px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.pipeline::before {
+  content: '';
+  position: absolute;
+  left: 32px;
+  top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--saffron), var(--teal));
+  border-radius: 2px;
+}
+
+.pipeline-step {
+  display: flex;
+  gap: 32px;
+  padding: 28px 0;
+  position: relative;
+  align-items: flex-start;
+}
+
+.step-dot {
+  width: 64px; height: 64px;
+  min-width: 64px;
+  background: var(--white);
+  border: 3px solid var(--saffron);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  transition: transform 0.3s, border-color 0.3s;
+  color: var(--teal);
+}
+
+.step-dot svg { width: 26px; height: 26px; }
+
+.pipeline-step:hover .step-dot {
+  transform: scale(1.1);
+  border-color: var(--teal);
+}
+
+.step-content { padding-top: 12px; }
+
+.step-content h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.step-content p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--warm-gray);
+  max-width: 500px;
+}
+
+.step-tech {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.tech-pill {
+  padding: 5px 12px;
+  background: rgba(7, 94, 84, 0.08);
+  color: var(--teal);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* --- AWS Architecture --- */
+.aws-section {
+  background: linear-gradient(135deg, #0F2027 0%, #132E35 50%, #1A1A2E 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.aws-section::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(245, 166, 35, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.aws-section .section-label { color: var(--saffron-light); }
+.aws-section .section-title { color: white; }
+.aws-section .section-desc { color: rgba(255,255,255,0.65); }
+
+.arch-flow {
+  margin-top: 56px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.arch-node {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  padding: 14px 20px;
+  text-align: center;
+  min-width: 100px;
+}
+
+.arch-node-icon {
+  width: 28px; height: 28px;
+  margin: 0 auto 6px;
+  color: var(--saffron-light);
+}
+
+.arch-node-icon svg { width: 28px; height: 28px; }
+.arch-node .label { font-size: 11px; font-weight: 600; color: var(--saffron-light); }
+.arch-node .sub { font-size: 10px; color: rgba(255,255,255,0.5); }
+
+.arch-arrow {
+  color: var(--saffron);
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.aws-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.aws-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 28px 22px;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.aws-card:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-4px);
+  border-color: var(--saffron);
+}
+
+.aws-icon {
+  width: 48px; height: 48px;
+  margin: 0 auto 14px;
+  background: rgba(245, 166, 35, 0.15);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--saffron-light);
+}
+
+.aws-icon svg { width: 24px; height: 24px; }
+
+.aws-card h4 {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 6px;
+  color: white;
+}
+
+.aws-card p {
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.55);
+}
+
+.aws-card .aws-service-name {
+  font-size: 11px;
+  color: var(--saffron-light);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+/* --- WhatsApp Story --- */
+.whatsapp-section { background: var(--cream-dark); }
+
+.whatsapp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-top: 48px;
+}
+
+.wa-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.wa-event {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.wa-dot-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wa-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--teal);
+  border: 3px solid var(--cream-dark);
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.wa-dot.blocked { background: var(--terracotta); }
+.wa-dot.success { background: var(--green-whatsapp); }
+
+.wa-line {
+  width: 2px;
+  flex: 1;
+  min-height: 40px;
+  background: var(--sand);
+}
+
+.wa-event-text h4 { font-size: 15px; margin-bottom: 4px; }
+.wa-event-text p { font-size: 13px; color: var(--warm-gray); line-height: 1.5; }
+
+.status-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.status-badge.ready { background: rgba(7, 94, 84, 0.1); color: var(--teal); }
+.status-badge.blocked { background: rgba(194, 86, 58, 0.1); color: var(--terracotta); }
+.status-badge.built { background: rgba(37, 211, 102, 0.1); color: #1A9B4C; }
+
+.wa-highlight-card {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+  width: 100%;
+  max-width: 400px;
+}
+
+.wa-highlight-card h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: var(--teal);
+}
+
+.wa-highlight-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--warm-gray);
+}
+
+.built-list {
+  list-style: none;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.built-list li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 14px;
+  color: var(--charcoal);
+  line-height: 1.4;
+}
+
+.built-list li .check-icon {
+  width: 18px; height: 18px;
+  min-width: 18px;
+  color: var(--green-whatsapp);
+  margin-top: 1px;
+}
+
+/* --- Languages --- */
+.lang-section { background: var(--cream); }
+
+.lang-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.lang-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px 16px;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: all 0.3s;
+}
+
+.lang-card:hover {
+  border-color: var(--saffron);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.lang-native {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+
+.lang-name { font-size: 14px; font-weight: 500; color: var(--charcoal); }
+.lang-code { font-size: 11px; color: var(--warm-gray); margin-top: 4px; }
+
+/* --- Voice First --- */
+.voice-section {
+  background: var(--teal);
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.voice-section::before {
+  content: '';
+  position: absolute;
+  top: -150px; left: -150px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(232, 119, 42, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.voice-section .section-label { color: var(--saffron-light); }
+.voice-section .section-title { color: white; }
+.voice-section .section-desc { color: rgba(255,255,255,0.7); margin: 0 auto 48px; }
+
+.voice-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.voice-feature {
+  padding: 32px 24px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.voice-feature-icon {
+  width: 48px; height: 48px;
+  margin: 0 auto 16px;
+  color: var(--saffron-light);
+}
+
+.voice-feature-icon svg { width: 48px; height: 48px; }
+
+.voice-feature h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.voice-feature p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.65);
+}
+
+.voice-cta { margin-top: 56px; }
+
+/* --- CTA banner --- */
+.cta-banner {
+  background: var(--saffron);
+  padding: 80px 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 300px; height: 300px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+}
+
+.cta-banner h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 4vw, 44px);
+  color: white;
+  margin-bottom: 12px;
+}
+
+.cta-banner p {
+  font-size: 17px;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 32px;
+}
+
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  color: var(--saffron);
+  padding: 16px 40px;
+  border-radius: 100px;
+  font-size: 17px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.btn-white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+/* --- Team --- */
+.team-section { background: var(--cream); }
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.team-card {
+  background: white;
+  border-radius: 20px;
+  padding: 32px 24px;
+  text-align: center;
+  border: 1px solid rgba(0,0,0,0.04);
+  transition: transform 0.3s;
+}
+
+.team-card:hover { transform: translateY(-4px); }
+
+.team-avatar {
+  width: 72px; height: 72px;
+  background: var(--teal);
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 28px;
+  font-family: 'DM Serif Display', serif;
+}
+
+.team-card h4 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+.team-card p { font-size: 13px; color: var(--warm-gray); }
+
+/* --- Footer --- */
+footer {
+  background: var(--charcoal);
+  color: var(--sand);
+  padding: 48px 32px;
+  text-align: center;
+}
+
+footer .footer-brand {
+  font-family: 'DM Serif Display', serif;
+  font-size: 24px;
+  color: white;
+  margin-bottom: 8px;
+}
+
+footer p { font-size: 13px; line-height: 1.6; }
+
+footer .footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+footer .footer-links a {
+  color: var(--sand);
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.2s;
+}
+
+footer .footer-links a:hover { color: var(--saffron); }
+
+.hackathon-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.06);
+  padding: 10px 20px;
+  border-radius: 100px;
+  margin-top: 24px;
+  font-size: 13px;
+  color: var(--saffron-light);
+  font-weight: 600;
+}
+
+.hackathon-badge svg { width: 16px; height: 16px; }
+
+/* --- Mobile menu --- */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 36px; height: 36px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.mobile-menu-btn span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--teal);
+  transition: all 0.3s;
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  .aws-grid { grid-template-columns: repeat(3, 1fr); }
+  .lang-grid { grid-template-columns: repeat(3, 1fr); }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .nav { padding: 12px 20px; }
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px; left: 0; right: 0;
+    background: var(--cream);
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    gap: 16px;
+  }
+  .mobile-menu-btn { display: flex; }
+
+  section { padding: 64px 20px; }
+  .hero { padding: 100px 20px 60px; }
+  .hero-content { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { display: none; }
+  .hero-stats { gap: 24px; }
+
+  .problem-grid { grid-template-columns: 1fr; }
+  .aws-grid { grid-template-columns: repeat(2, 1fr); }
+  .whatsapp-grid { grid-template-columns: 1fr; }
+  .lang-grid { grid-template-columns: repeat(2, 1fr); }
+  .voice-features { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .arch-flow { padding: 24px; gap: 8px; }
+  .arch-node { padding: 10px 14px; min-width: 70px; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 32px; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .btn-primary, .btn-secondary { justify-content: center; }
+  .hero-stats { flex-direction: column; gap: 16px; }
+  .aws-grid { grid-template-columns: 1fr; }
+  .lang-grid { grid-template-columns: repeat(2, 1fr); }
+  .team-grid { grid-template-columns: 1fr; }
+}
+
+/* --- Scroll reveal --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s, transform 0.6s;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="mainNav">
+  <a href="#" class="nav-brand">
+    <div class="nav-logo">K</div>
+    <span>KaamConnect</span>
+  </a>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="#problem">The Problem</a>
+    <a href="#how">How It Works</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#languages">Languages</a>
+    <a href="#team">Team</a>
+    <a href="chat/" class="nav-cta">Talk to KaamConnect</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-bg-dots"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        AI for Bharat Hackathon 2025
+      </div>
+      <h1>Every worker deserves<br>the right <span class="hindi">&#x0915;&#x093E;&#x092E;</span></h1>
+      <p class="hero-sub">Voice-first, multilingual job matching for India's 450 million blue-collar workers. Speak in your language. Find work near you. No app download, no typing, no barriers.</p>
+      <div class="hero-actions">
+        <a href="chat/" class="btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Talk to KaamConnect
+        </a>
+        <a href="#how" class="btn-secondary">
+          See How It Works
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">10</div>
+          <div class="stat-label">Indian languages</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Voice-first</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">12+</div>
+          <div class="stat-label">AWS services</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="float-card float-card-voice">
+        <div class="voice-wave">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <span style="font-size: 13px; font-weight: 600; color: var(--charcoal);">Voice input active</span>
+      </div>
+      <div class="phone-mockup">
+        <div class="phone-notch"></div>
+        <div class="phone-header">
+          <div class="phone-header-dot">K</div>
+          <div class="phone-header-text">
+            <strong>KaamConnect</strong>
+            <span>Voice-first job matching</span>
+          </div>
+        </div>
+        <div class="phone-chat">
+          <div class="chat-bubble bot">Namaste! KaamConnect mein aapka swagat hai. Aap worker hain ya employer?</div>
+          <div class="chat-bubble user">Worker</div>
+          <div class="chat-bubble bot">Kya kaam dhundh rahe hain? Aap bol sakte hain ya type kar sakte hain.</div>
+          <div class="chat-bubble user">Mujhe electrician ka kaam chahiye Bangalore mein</div>
+          <div class="chat-bubble bot">3 matching jobs found near Whitefield, Bangalore! Kya aap details dekhna chahenge?</div>
+        </div>
+      </div>
+      <div class="float-card float-card-lang">
+        <div class="lang-chips">
+          <span class="lang-chip active">Hindi</span>
+          <span class="lang-chip">Tamil</span>
+          <span class="lang-chip">Telugu</span>
+          <span class="lang-chip">+7</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem -->
+<section class="problem" id="problem">
+  <div class="section-inner reveal">
+    <div class="section-label">The Problem</div>
+    <div class="section-title">India's workforce is being left behind by technology</div>
+    <div class="section-desc">Most job platforms are built for English-speaking, smartphone-savvy urbanites. But India's backbone is its blue-collar workforce who speak regional languages, may have limited literacy, and rely on word-of-mouth for work.</div>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="problem-stat">450M+</div>
+        <h3>Informal Workers</h3>
+        <p>India's informal sector employs over 450 million people. Most find work through middlemen who take hefty commissions, leaving workers underpaid and exploited.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="problem-stat">22</div>
+        <h3>Official Languages</h3>
+        <p>India has 22 official languages and hundreds of dialects. Most job apps only support English and Hindi, excluding millions of workers from southern and eastern India.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <div class="problem-stat">73%</div>
+        <h3>Low Digital Literacy</h3>
+        <p>A vast majority of blue-collar workers struggle with text-based interfaces. They need voice-first, conversational interactions in their own language.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How it Works -->
+<section class="how-it-works" id="how">
+  <div class="section-inner reveal">
+    <div class="section-label">How It Works</div>
+    <div class="section-title">From voice to job match in under 60 seconds</div>
+    <div class="section-desc">KaamConnect uses a conversational AI pipeline that understands voice in 10 Indian languages and matches workers with relevant jobs near them.</div>
+
+    <div class="pipeline">
+      <div class="pipeline-step">
+        <div class="step-dot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        </div>
+        <div class="step-content">
+          <h3>Speak in Your Language</h3>
+          <p>Workers record a voice message in their native language. No typing needed. "Mujhe electrician ka kaam chahiye Bangalore mein" is all it takes.</p>
+          <div class="step-tech">
+            <span class="tech-pill">Browser MediaRecorder</span>
+            <span class="tech-pill">WebM / Opus</span>
+          </div>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-dot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div class="step-content">
+          <h3>AI Transcription</h3>
+          <p>Amazon Transcribe converts voice to text with support for 10 Indian languages including Hindi, Tamil, Telugu, Bengali, and more.</p>
+          <div class="step-tech">
+            <span class="tech-pill">Amazon Transcribe</span>
+            <span class="tech-pill">Amazon S3</span>
+            <span class="tech-pill">AWS Lambda</span>
+          </div>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-dot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        </div>
+        <div class="step-content">
+          <h3>Entity Extraction</h3>
+          <p>Amazon Bedrock (Nova Micro) extracts structured data from natural speech: job type, location, salary expectations, skills, and availability.</p>
+          <div class="step-tech">
+            <span class="tech-pill">Amazon Bedrock</span>
+            <span class="tech-pill">Nova Micro</span>
+          </div>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-dot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="step-content">
+          <h3>Smart Matching</h3>
+          <p>Multi-dimensional matching algorithm scores jobs on location proximity, skill relevance, salary fit, and schedule compatibility. Returns the top matches.</p>
+          <div class="step-tech">
+            <span class="tech-pill">DynamoDB</span>
+            <span class="tech-pill">GSI Queries</span>
+          </div>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-dot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="step-content">
+          <h3>Response in Your Language</h3>
+          <p>Results are formatted and delivered in the worker's native language with contact details, salary info, and location. The full conversation is maintained across sessions.</p>
+          <div class="step-tech">
+            <span class="tech-pill">Amazon Bedrock</span>
+            <span class="tech-pill">Multilingual Templates</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWS Architecture -->
+<section class="aws-section" id="architecture">
+  <div class="section-inner reveal">
+    <div class="section-label">AWS Architecture</div>
+    <div class="section-title">Built entirely on AWS, deployed via CDK</div>
+    <div class="section-desc">KaamConnect leverages 12+ AWS services across 2 regions, all defined as Infrastructure as Code with AWS CDK (Python).</div>
+
+    <div class="arch-flow">
+      <div class="arch-node">
+        <div class="arch-node-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="label">CloudFront</div>
+        <div class="sub">Static site + HTTPS</div>
+      </div>
+      <div class="arch-arrow">&rarr;</div>
+      <div class="arch-node">
+        <div class="arch-node-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+        </div>
+        <div class="label">API Gateway</div>
+        <div class="sub">REST API + CORS</div>
+      </div>
+      <div class="arch-arrow">&rarr;</div>
+      <div class="arch-node">
+        <div class="arch-node-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="label">Lambda</div>
+        <div class="sub">6 functions</div>
+      </div>
+      <div class="arch-arrow">&rarr;</div>
+      <div class="arch-node">
+        <div class="arch-node-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        </div>
+        <div class="label">DynamoDB</div>
+        <div class="sub">3 tables + GSIs</div>
+      </div>
+    </div>
+
+    <div class="aws-grid">
+      <div class="aws-card">
+        <div class="aws-service-name">Compute</div>
+        <div class="aws-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <h4>AWS Lambda</h4>
+        <p>6 serverless functions: Message Router, Voice Processor, Entity Extractor, Matcher, Response Generator, Web Chat</p>
+      </div>
+      <div class="aws-card">
+        <div class="aws-service-name">Database</div>
+        <div class="aws-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        </div>
+        <h4>DynamoDB</h4>
+        <p>3 tables with GSIs: Sessions (TTL), Job Postings (location + category indexes), User Profiles</p>
+      </div>
+      <div class="aws-card">
+        <div class="aws-service-name">AI / ML</div>
+        <div class="aws-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        </div>
+        <h4>Amazon Bedrock</h4>
+        <p>Nova Micro model for entity extraction and multilingual response generation via inference profiles</p>
+      </div>
+      <div class="aws-card">
+        <div class="aws-service-name">Speech</div>
+        <div class="aws-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        </div>
+        <h4>Amazon Transcribe</h4>
+        <p>Real-time speech-to-text in 10 Indian languages with confidence scoring</p>
+      </div>
+      <div class="aws-card">
+        <div class="aws-service-name">API</div>
+        <div class="aws-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+        </div>
+        <h4>API Gateway</h4>
+        <p>Two REST APIs: WhatsApp webhook (EUMS) and Web Chat endpoint with CORS &amp; throttling</p>
+      </div>
+      <div class="aws-card">
+        <div class="aws-service-name">Messaging</div>
+        <div class="aws-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </div>
+        <h4>SNS + SQS</h4>
+        <p>Cross-region fan-out from us-east-1 (EUMS) to ap-south-1 (Lambda). Dead Letter Queue for reliability</p>
+      </div>
+      <div class="aws-card">
+        <div class="aws-service-name">Storage</div>
+        <div class="aws-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h4>Amazon S3</h4>
+        <p>Voice file staging with auto-cleanup lifecycle policy. Static website hosting for the web app</p>
+      </div>
+      <div class="aws-card">
+        <div class="aws-service-name">CDN + TLS</div>
+        <div class="aws-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4>CloudFront + ACM</h4>
+        <p>HTTPS on custom domain kaamconnect.rahulsingh.xyz with SSL certificate via AWS Certificate Manager</p>
+      </div>
+      <div class="aws-card">
+        <div class="aws-service-name">WhatsApp</div>
+        <div class="aws-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <h4>EUMS</h4>
+        <p>End User Messaging Social for WhatsApp Business API integration in us-east-1</p>
+      </div>
+      <div class="aws-card">
+        <div class="aws-service-name">IaC</div>
+        <div class="aws-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h4>AWS CDK</h4>
+        <p>4 stacks in Python: Foundation, API, Processing, Monitoring. Full infrastructure as code</p>
+      </div>
+      <div class="aws-card">
+        <div class="aws-service-name">Observability</div>
+        <div class="aws-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h4>CloudWatch</h4>
+        <p>Custom dashboards, Lambda log retention, error tracking, and performance monitoring</p>
+      </div>
+      <div class="aws-card">
+        <div class="aws-service-name">Security</div>
+        <div class="aws-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h4>IAM</h4>
+        <p>Least-privilege roles per Lambda. Fine-grained Bedrock, Transcribe, and DynamoDB permissions</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WhatsApp Story -->
+<section class="whatsapp-section" id="whatsapp">
+  <div class="section-inner reveal">
+    <div class="section-label">WhatsApp Integration</div>
+    <div class="section-title">Built for WhatsApp, adapted for the web</div>
+    <div class="section-desc">Our architecture was designed WhatsApp-first using AWS EUMS. Here's our journey and the pivot that made the demo possible.</div>
+
+    <div class="whatsapp-grid">
+      <div class="wa-timeline">
+        <div class="wa-event">
+          <div class="wa-dot-line">
+            <div class="wa-dot success"></div>
+            <div class="wa-line"></div>
+          </div>
+          <div class="wa-event-text">
+            <h4>EUMS + WhatsApp Business API</h4>
+            <p>Integrated AWS End User Messaging Social in us-east-1 with Meta WhatsApp Business API. Full inbound message pipeline working.</p>
+            <span class="status-badge ready">Inbound Working</span>
+          </div>
+        </div>
+        <div class="wa-event">
+          <div class="wa-dot-line">
+            <div class="wa-dot success"></div>
+            <div class="wa-line"></div>
+          </div>
+          <div class="wa-event-text">
+            <h4>Cross-Region SNS Architecture</h4>
+            <p>Messages flow from EUMS (us-east-1) via SNS to Lambda functions in ap-south-1 (Mumbai) for processing. Fully serverless.</p>
+            <span class="status-badge ready">Architecture Ready</span>
+          </div>
+        </div>
+        <div class="wa-event">
+          <div class="wa-dot-line">
+            <div class="wa-dot blocked"></div>
+            <div class="wa-line"></div>
+          </div>
+          <div class="wa-event-text">
+            <h4>Meta Business Verification</h4>
+            <p>Outbound messaging requires Meta Business Verification which takes 2-7 business days. With the hackathon deadline approaching, we couldn't wait for approval.</p>
+            <span class="status-badge blocked">Blocked by Verification</span>
+          </div>
+        </div>
+        <div class="wa-event">
+          <div class="wa-dot-line">
+            <div class="wa-dot success"></div>
+          </div>
+          <div class="wa-event-text">
+            <h4>Web Chat Pivot</h4>
+            <p>Built a full web chat interface reusing the same backend pipeline. Same AI, same matching, same multilingual support. Zero code waste.</p>
+            <span class="status-badge built">Live &amp; Working</span>
+          </div>
+        </div>
+      </div>
+      <div class="wa-visual">
+        <div class="wa-highlight-card">
+          <h3>The Full Pipeline is Built</h3>
+          <p>The WhatsApp integration is not vaporware. Every component is deployed and tested:</p>
+          <ul class="built-list">
+            <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>EUMS phone number provisioned &amp; configured</li>
+            <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>SNS cross-region subscription active</li>
+            <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Inbound webhook parsing handles EUMS payload format</li>
+            <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Message Router dispatches to correct Lambda</li>
+            <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Voice download via EUMS GetWhatsAppMessageMedia</li>
+            <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Outbound via SendWhatsAppMessage API</li>
+            <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Only blocked on Meta's business verification timeline</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Languages -->
+<section class="lang-section" id="languages">
+  <div class="section-inner reveal">
+    <div class="section-label">Multilingual</div>
+    <div class="section-title">10 Indian languages, one platform</div>
+    <div class="section-desc">Workers speak in their native language. KaamConnect understands, processes, and responds in the same language. Voice-first, no typing required.</div>
+
+    <div class="lang-grid">
+      <div class="lang-card">
+        <div class="lang-native">&#x0939;&#x093F;&#x0928;&#x094D;&#x0926;&#x0940;</div>
+        <div class="lang-name">Hindi</div>
+        <div class="lang-code">hi-IN</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-native">English</div>
+        <div class="lang-name">English</div>
+        <div class="lang-code">en-IN</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-native">&#x0BA4;&#x0BAE;&#x0BBF;&#x0BB4;&#x0BCD;</div>
+        <div class="lang-name">Tamil</div>
+        <div class="lang-code">ta-IN</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-native">&#x0C24;&#x0C46;&#x0C32;&#x0C41;&#x0C17;&#x0C41;</div>
+        <div class="lang-name">Telugu</div>
+        <div class="lang-code">te-IN</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-native">&#x09AC;&#x09BE;&#x0982;&#x09B2;&#x09BE;</div>
+        <div class="lang-name">Bengali</div>
+        <div class="lang-code">bn-IN</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-native">&#x092E;&#x0930;&#x093E;&#x0920;&#x0940;</div>
+        <div class="lang-name">Marathi</div>
+        <div class="lang-code">mr-IN</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-native">&#x0A97;&#x0AC1;&#x0A9C;&#x0AB0;&#x0ABE;&#x0AA4;&#x0AC0;</div>
+        <div class="lang-name">Gujarati</div>
+        <div class="lang-code">gu-IN</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-native">&#x0C95;&#x0CA8;&#x0CCD;&#x0CA8;&#x0CA1;</div>
+        <div class="lang-name">Kannada</div>
+        <div class="lang-code">kn-IN</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-native">&#x0D2E;&#x0D32;&#x0D2F;&#x0D3E;&#x0D33;&#x0D02;</div>
+        <div class="lang-name">Malayalam</div>
+        <div class="lang-code">ml-IN</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-native">&#x0A2A;&#x0A70;&#x0A1C;&#x0A3E;&#x0A2C;&#x0A40;</div>
+        <div class="lang-name">Punjabi</div>
+        <div class="lang-code">pa-IN</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Voice First -->
+<section class="voice-section" id="voice">
+  <div class="section-inner reveal">
+    <div class="section-label">Voice First</div>
+    <div class="section-title">Designed for those who speak, not type</div>
+    <div class="section-desc">Most blue-collar workers are more comfortable speaking than typing. KaamConnect is built from the ground up for voice interaction.</div>
+
+    <div class="voice-features">
+      <div class="voice-feature">
+        <div class="voice-feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        </div>
+        <h3>Tap and Speak</h3>
+        <p>One tap to record. Speak naturally in your language. No keyboards, no forms, no confusion. Just a conversation.</p>
+      </div>
+      <div class="voice-feature">
+        <div class="voice-feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        </div>
+        <h3>AI Understands Context</h3>
+        <p>Amazon Bedrock extracts job type, location, salary, and skills from natural speech. "Mujhe driver ka kaam chahiye" is enough.</p>
+      </div>
+      <div class="voice-feature">
+        <div class="voice-feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Conversational Flow</h3>
+        <p>Not a form. Not a search bar. A conversation. KaamConnect asks follow-up questions, clarifies details, and guides workers through matching.</p>
+      </div>
+    </div>
+
+    <div class="voice-cta">
+      <a href="chat/" class="btn-white">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        Try Voice Chat Now
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Banner -->
+<section class="cta-banner">
+  <div class="section-inner">
+    <h2>Ready to see it in action?</h2>
+    <p>Try KaamConnect right now. Speak in Hindi, Tamil, or any of our 10 supported languages.</p>
+    <a href="chat/" class="btn-white">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Talk to KaamConnect
+    </a>
+  </div>
+</section>
+
+<!-- Team -->
+<section class="team-section" id="team">
+  <div class="section-inner reveal">
+    <div class="section-label">Team</div>
+    <div class="section-title">Built by Team KaamConnect</div>
+    <div class="section-desc">For the AI for Bharat Hackathon 2025. Building technology that serves everyone, not just the privileged few.</div>
+
+    <div class="team-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 500px; margin: 48px auto 0;">
+      <div class="team-card">
+        <div class="team-avatar">R</div>
+        <h4>Rajarshi Roy</h4>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background: var(--saffron);">R</div>
+        <h4>Rahul Kumar Singh</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-brand">KaamConnect</div>
+  <p>Voice-first, multilingual job matching for India's blue-collar workers.</p>
+  <div class="footer-links">
+    <a href="chat/">Try the Chat</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#team">Team</a>
+  </div>
+  <div class="hackathon-badge">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    AI for Bharat Hackathon 2025 &mdash; Powered by AWS
+  </div>
+</footer>
+
+<script>
+var nav = document.getElementById('mainNav');
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 40) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+
+document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+document.querySelectorAll('.nav-links a').forEach(function(link) {
+  link.addEventListener('click', function() {
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+
+var reveals = document.querySelectorAll('.reveal');
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+reveals.forEach(function(el) { observer.observe(el); });
+
+document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+  anchor.addEventListener('click', function(e) {
+    var target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>

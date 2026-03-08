@@ -1,0 +1,39 @@
+Job Category Taxonomy for KaamConnect
+=====================================
+
+Each entry: canonical_name | Hindi aliases | Other language aliases
+
+plumber | plumber, plumbing ka kaam, panni fitting, nalka, pipe work, nalkewala
+electrician | bijli wala, electrician, wiring, bijli ka kaam, bijli mistri
+maid | bai, kaamwali, house help, safai wali, ghar ka kaam, jhadoo pocha
+cook | khana banana, rsoiya, maharaj, cook, bawarchi
+driver | driver, chalak, auto driver, cab driver, gaadi chalana
+carpenter | badhai, lakdi ka kaam, carpenter, furniture banane wala
+painter | rang wala, painting, painter, paint ka kaam
+mason | mistri, rajgir, cement ka kaam, mason, construction
+security_guard | security, guard, chowkidar, watchman, darban, raat ka guard
+delivery | delivery boy, delivery, parcel, courier
+warehouse | godown, warehouse, maal uthana
+factory | factory, karkhana, plant
+tailor | darzi, silai, tailor, kapda silna
+gardener | mali, gardener, baghban, paudhe lagana
+ac_mechanic | AC repair, AC mechanic, fridge repair
+welder | welder, welding ka kaam
+helper | helper, sahayak, assistant
+cleaner | safai karmchari, cleaner, jhadu wala
+watchman | chowkidar, watchman (NOTE: prefer security_guard as canonical type)
+peon | peon, chaprasi, office boy
+sweeper | sweeper, safai, jhadu
+babysitter | baby care, bachche dekhna, nanny, aaya
+caretaker | dekhbhal, patient care, caretaker, attendant
+receptionist | reception, front desk
+office_boy | office boy, chai wala
+data_entry | data entry, typing, computer operator
+telecaller | phone pe baat, telecaller, calling
+sales | sales, bechna, dukaan
+loader | loader, samaan uthana, labour
+mechanic | mechanic, gaadi theek karna, mistri
+barber | nai, barber, baal katna, salon
+beautician | beauty parlour, beautician, makeup
+washerman | dhobi, kapda dhona, laundry, ironing
+ironer | press wala, istri, ironing

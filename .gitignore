@@ -1,0 +1,48 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# AWS CDK
+cdk.out/
+.cdk.staging/
+
+# Environment
+.env
+.env.local
+
+# Claude
+.claude/
+
+# Session prompts / internal docs
+NEXT_SESSION_PROMPT.md
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+.hypothesis/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Lambda packages
+*.zip
+layer/
+docs/
